@@ -1,0 +1,520 @@
+// COLUMNAL - CORE
+///*/////////////////////////////////////////// */
+
+/* Column code based on work from cssgrid.net: 
+ *The 1140px Grid by Andy Taylor – http://cssgrid.net – http://www.twitter.com/andytlr – http://www.catchingzebra.com
+@import text
+
+$columnal-grid-width: 1140px !default
+
+$columnal-columns: 12 !default
+
+$columnal-class-separator: "_" !default
+
+=grid-container
+  padding-left: 20px
+  padding-right: 20px
+  img, object, embed
+    max-width: 100%
+
+=grid-row
+  clear: both
+  width: 100%
+  max-width: 1140px
+  margin: 0 auto
+  overflow: hidden
+
+=grid-unit-base
+  float: left
+  margin-right: 3.8%
+  position: relative
+
+=grid($n)
+  +grid-unit-base
+  width: (4.85% + 8.65% * ($n - 1))
+  @if $n == 12
+    clear: both
+    float: left
+
+=grid-prefix($n)
+  padding-left: ($n*8.65%)
+
+=grid-suffix($n)
+  padding-right: ($n*8.65%)
+
+=last
+  +omega
+
+=omega
+  margin-right: 0 !important
+
+=margin-top($n)
+  margin-top: $n !important
+
+=margin-bottom($n)
+  margin-bottom: $n !important
+
+=padding-top($n)
+  padding-top: $n !important
+
+=padding-bottom($n)
+  padding-bottom: $n !important
+
+=grids($cols: $columnal-columns)
+  #{enumerate(".col", 1, $cols, $columnal-class-separator)}
+  @for $n from 1 through $cols
+    .col#{$columnal-class-separator}#{$n}
+      +grid($n)
+
+=grid-prefixes-sufixes($cols: $columnal-columns)
+  @for $n from 1 through $cols - 1
+    .pre#{$columnal-class-separator}#{$n}
+      +grid-prefix($n)
+    .suf#{$columnal-class-separator}#{$n}
+      +grid-suffix($n)
+
+=grid-system-complete
+  +grids
+  +grid-prefixes-sufixes
+  +text
+  .row
+    +grid-row
+  .container
+    +grid-container
+  .last, .omega
+    +last
+
+/*
+ *_______________________________
+ *Columnal - sub-columns
+
+.col_2
+  .col_1
+    margin-right: 28.62%
+    width: 35.69%
+  .pre_1
+    padding-left: 35.69%
+  .suf_1
+    padding-right: 35.69%
+
+/*
+
+.col_3
+  .col_2
+    margin-right: 17.45%
+  .col_1
+    margin-right: 17.45%
+    width: 21.7%
+  .col_2
+    width: 60.86%
+  .pre_1
+    padding-left: 21.7%
+  .pre_2
+    padding-left: 60.86%
+  .suf_1
+    padding-right: 21.7%
+  .suf_2
+    padding-right: 60.86%
+
+/*
+
+.col_4
+  .col_3, .col_2
+    margin-right: 12.36%
+  .col_1
+    margin-right: 12.36%
+    width: 15.73%
+  .col_2
+    width: 43.82%
+  .col_3
+    width: 71.91%
+  .pre_1
+    padding-left: 28.09%
+  .pre_2
+    padding-left: 56.18%
+  .pre_3
+    padding-left: 84.27%
+  .suf_1
+    padding-right: 28.09%
+  .suf_2
+    padding-right: 56.18%
+  .suf_3
+    padding-right: 84.27%
+
+/*
+
+.col_5
+  .col_4, .col_3, .col_2
+    margin-right: 9.7%
+  .col_1
+    margin-right: 9.7%
+    width: 12.24%
+  .col_2
+    width: 34%
+  .col_3
+    width: 56.28%
+  .col_4
+    width: 78%
+  .pre_1
+    padding-left: 21.94%
+  .pre_2
+    padding-left: 43.7%
+  .pre_3
+    padding-left: 65.98%
+  .pre_4
+    padding-left: 87.7%
+  .suf_1
+    padding-right: 21.94%
+  .suf_2
+    padding-right: 43.7%
+  .suf_3
+    padding-right: 65.98%
+  .suf_4
+    padding-right: 87.7%
+
+/*
+
+.col_6
+  .col_5, .col_4, .col_3, .col_2
+    margin-right: 7.77%
+  .col_1
+    margin-right: 7.77%
+    width: 10.19%
+  .col_2
+    width: 28.13%
+  .col_3
+    width: 46.11%
+  .col_4
+    width: 64.1%
+  .col_5
+    width: 82%
+  .pre_1
+    padding-left: 89.77%
+  .pre_2
+    padding-left: 71.87%
+  .pre_3
+    padding-left: 53.88%
+  .pre_4
+    padding-left: 35.9%
+  .pre_5
+    padding-left: 17.96%
+  .suf_1
+    padding-right: 89.77%
+  .suf_2
+    padding-right: 71.87%
+  .suf_3
+    padding-right: 53.88%
+  .suf_4
+    padding-right: 35.9%
+  .suf_5
+    padding-right: 17.96%
+
+/*
+
+.col_7
+  .col_6, .col_5, .col_4, .col_3, .col_2
+    margin-right: 6.56%
+  .col_1
+    margin-right: 6.56%
+    width: 8.66%
+  .col_2
+    width: 23.88%
+  .col_3
+    width: 39.11%
+  .col_4
+    width: 54.33%
+  .col_5
+    width: 69.56%
+  .col_6
+    width: 84.78%
+  .pre_1
+    padding-left: 15.22%
+  .pre_2
+    padding-left: 30.44%
+  .pre_3
+    padding-left: 45.67%
+  .pre_4
+    padding-left: 60.89%
+  .pre_5
+    padding-left: 76.12%
+  .pre_6
+    padding-left: 91.34%
+  .suf_1
+    padding-right: 15.22%
+  .suf_2
+    padding-right: 30.44%
+  .suf_3
+    padding-right: 45.67%
+  .suf_4
+    padding-right: 60.89%
+  .suf_5
+    padding-right: 76.12%
+  .suf_6
+    padding-right: 91.34%
+
+/*
+
+.col_8
+  .col_7, .col_6, .col_5, .col_4, &.col_3, .col_2
+    margin-right: 5.78%
+  .col_1
+    margin-right: 5.78%
+    width: 7.44%
+  .col_2
+    width: 20.66%
+  .col_3
+    width: 33.89%
+  .col_4
+    width: 47.11%
+  .col_5
+    width: 60.33%
+  .col_6
+    width: 73.56%
+  .col_7
+    width: 86.78%
+  .pre_1
+    padding-left: 13.22%
+  .pre_2
+    padding-left: 26.44%
+  .pre_3
+    padding-left: 39.67%
+  .pre_4
+    padding-left: 52.89%
+  .pre_5
+    padding-left: 66.11%
+  .pre_6
+    padding-left: 79.34%
+  .pre_7
+    padding-left: 92.56%
+  .suf_1
+    padding-right: 13.22%
+  .suf_2
+    padding-right: 26.44%
+  .suf_3
+    padding-right: 39.67%
+  .suf_4
+    padding-right: 52.89%
+  .suf_5
+    padding-right: 66.11%
+  .suf_6
+    padding-right: 79.34%
+  .suf_7
+    padding-right: 92.56%
+
+/*
+
+.col_9
+  .col_1, .col_2, .col_3, .col_4, .col_5, .col_6, .col_7, .col_8
+    margin-right: 5.1%
+  .col_1
+    width: 6.57%
+  .col_2
+    width: 18.25%
+  .col_3
+    width: 29.93%
+  .col_4
+    width: 41.61%
+  .col_5
+    width: 53.25%
+  .col_6
+    width: 64.97%
+  .col_7
+    width: 76.65%
+  .col_8
+    width: 88.33%
+  .pre_1
+    padding-left: 11.67%
+  .pre_2
+    padding-left: 23.35%
+  .pre_3
+    padding-left: 35.03%
+  .pre_4
+    padding-left: 46.71%
+  .pre_5
+    padding-left: 58.35%
+  .pre_6
+    padding-left: 70.07%
+  .pre_7
+    padding-left: 81.75%
+  .pre_8
+    padding-left: 93.43%
+  .suf_1
+    padding-right: 11.67%
+  .suf_2
+    padding-right: 23.35%
+  .suf_3
+    padding-right: 35.03%
+  .suf_4
+    padding-right: 46.71%
+  .suf_5
+    padding-right: 58.35%
+  .suf_6
+    padding-right: 70.07%
+  .suf_7
+    padding-right: 81.75%
+  .suf_8
+    padding-right: 93.43%
+
+/*
+
+.col_10
+  .col_9, .col_8, .col_7, .col_6, .col_5, .col_4, .col_3, .col_2
+    margin-right: 4.61%
+  .col_1
+    margin-right: 4.61%
+    width: 5.85%
+  .col_2
+    width: 16.31%
+  .col_3
+    width: 26.77%
+  .col_4
+    width: 37.23%
+  .col_5
+    width: 47.69%
+  .col_6
+    width: 58.16%
+  .col_7
+    width: 68.62%
+  .col_8
+    width: 79.08%
+  .col_9
+    width: 89.54%
+  .pre_1
+    padding-left: 10.46%
+  .pre_2
+    padding-left: 20.92%
+  .pre_3
+    padding-left: 31.38%
+  .pre_4
+    padding-left: 41.84%
+  .pre_5
+    padding-left: 52.3%
+  .pre_6
+    padding-left: 62.77%
+  .pre_7
+    padding-left: 73.23%
+  .pre_8
+    padding-left: 83.69%
+  .pre_9
+    padding-left: 94.06%
+  .suf_1
+    padding-right: 10.46%
+  .suf_2
+    padding-right: 20.92%
+  .suf_3
+    padding-right: 31.38%
+  .suf_4
+    padding-right: 41.84%
+  .suf_5
+    padding-right: 52.3%
+  .suf_6
+    padding-right: 62.77%
+  .suf_7
+    padding-right: 73.23%
+  .suf_8
+    padding-right: 83.69%
+  .suf_9
+    padding-right: 94.06%
+
+/*
+
+.col_11
+  .col_10, .col_9, .col_8, .col_7, .col_6, .col_5, .col_4, .col_3, .col_2
+    margin-right: 4.14%
+  .col_1
+    margin-right: 4.14%
+    width: 5.32%
+  .col_2
+    width: 14.79%
+  .col_3
+    width: 24.26%
+  .col_4
+    width: 33.73%
+  .col_5
+    width: 43.2%
+  .col_6
+    width: 52.66%
+  .col_7
+    width: 62.1%
+  .col_8
+    width: 71.6%
+  .col_9
+    width: 81.07%
+  .col_10
+    width: 90.54%
+  .pre_1
+    padding-left: 9.46%
+  .pre_2
+    padding-left: 18.93%
+  .pre_3
+    padding-left: 28.4%
+  .pre_4
+    padding-left: 37.87%
+  .pre_5
+    padding-left: 47.34%
+  .pre_6
+    padding-left: 56.8%
+  .pre_7
+    padding-left: 66.24%
+  .pre_8
+    padding-left: 75.74%
+  .pre_9
+    padding-left: 85.21%
+  .pre_10
+    padding-left: 94.68%
+  .suf_1
+    padding-right: 9.46%
+  .suf_2
+    padding-right: 18.93%
+  .suf_3
+    padding-right: 28.4%
+  .suf_4
+    padding-right: 37.87%
+  .suf_5
+    padding-right: 47.34%
+  .suf_6
+    padding-right: 56.8%
+  .suf_7
+    padding-right: 66.24%
+  .suf_8
+    padding-right: 75.74%
+  .suf_9
+    padding-right: 85.21%
+  .suf_10
+    padding-right: 94.68%
+
+
+/*
+ *_______________________________
+ *Columnal - extras
+
+.clear, .clearboth
+  clear: both !important
+
+.clearleft
+  clear: left !important
+
+.clearright
+  clear: right !important
+
+.textcenter
+  text-align: center
+
+.textright
+  text-align: right
+
+.textleft
+  text-align: left
+
+/* this will insert a pseduo element clears floats for an element containing floated content
+
+.selfclear:after
+  clear: both
+  content: "."
+  display: block
+  height: 0
+  visibility: hidden
+
+=mobile-only
+  display: none
+

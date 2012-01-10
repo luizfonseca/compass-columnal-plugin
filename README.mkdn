@@ -1,0 +1,36 @@
+Columnal Grid System - Compass Plugin
+================================
+
+Columnal is a responsive CSS grid system helping desktop and mobile browsers play nicely together.
+See the official site for more info: <http://www.columnal.com//>
+
+* This plugin is consistent with latest version of Columnal as of 10/01/2012
+
+---------
+
+This plugin adds the Columnal Grid System framework to [Compass](http://compass-style.org/).
+This plugin is heavly based upon the 960.gs compass plugin written by Chris Eppstein and Matt Sanders.
+I've tried to use the same mixin names whenever possible to make a migration easier.
+
+Install
+=======
+
+    to be added soon
+
+Class-Based Grid System
+=======================
+
+To create a grid system that works like the original Columnal Grid System framework
+use the `+grid-system-complete` mixin to generate the corresponding classes. You 
+can also customize the number of columns as demonstrated:
+
+Example:
+    
+    +grid-system-complete(24)
+
+Making Semantic Grids
+=====================
+
+to be added soon
+
+
