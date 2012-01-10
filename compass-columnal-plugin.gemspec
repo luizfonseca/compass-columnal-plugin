@@ -16,9 +16,7 @@ Gem::Specification.new do |s|
     "lib/columnal.rb",
     "stylesheets/columnal/_grid.sass",
     "stylesheets/columnal/_text.sass",
-    "templates/project/grid.sass",
-    "templates/project/manifest.rb",
-    "templates/project/text.sass"
+    "templates/project/manifest.rb"
   ]
   s.homepage = %q{https://github.com/diogob/compass-columnal-plugin}
   s.require_paths = ["lib"]
