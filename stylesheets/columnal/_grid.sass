@@ -22,6 +22,12 @@ $columnal-class-separator: "_" !default
     margin-right: 0
     padding-left: 0
     padding-right: 0
+    h1 {margin:.5em 0 .5em;}
+    h2 {margin:.5em 0 .535em;}
+    h3 {margin:.5em 0 .57em;}
+    h4 {margin:.5em 0 .615em;}
+    h5 {margin:.5em 0 .67em;}
+    h6 {margin:.5em 0 .8em;}
 
 =grid-row($grid-width: $columnal-grid-width)
   clear: both
@@ -40,6 +46,15 @@ $columnal-class-separator: "_" !default
   float: left
   margin-right: 3.8%
   position: relative
+  @media handheld, only screen and (max-width: 767px)
+    clear: both;
+    float: none;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: auto;
+    width: -moz-available;
 
 =grid($n)
   +grid-unit-base
@@ -57,9 +72,13 @@ $columnal-class-separator: "_" !default
 
 =grid-prefix($n)
   padding-left: ($n*8.65%)
+  @media handheld, only screen and (max-width: 767px)
+    padding-left: 0
 
 =grid-suffix($n)
   padding-right: ($n*8.65%)
+  @media handheld, only screen and (max-width: 767px)
+    padding-right: 0
 
 =last
   +omega
@@ -536,4 +555,10 @@ $columnal-class-separator: "_" !default
 
 =mobile-only
   display: none
+  @media handheld, only screen and (max-width: 767px)
+    display: block
+
+=mobile-hide
+  @media handheld, only screen and (max-width: 767px)
+    display: none
 
