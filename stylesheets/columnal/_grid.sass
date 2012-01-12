@@ -4,12 +4,25 @@
 /* Column code based on work from cssgrid.net: 
  *The 1140px Grid by Andy Taylor – http://cssgrid.net – http://www.twitter.com/andytlr – http://www.catchingzebra.com
 @import text
+@import compass/css3
 
 $columnal-grid-width: 1140px !default
 
 $columnal-columns: 12 !default
 
 $columnal-class-separator: "_" !default
+
+// Some basic presets
+img, object, embed
+  margin-bottom: 20px
+  max-width: 100%
+
+img 
+  +border-radius(3px)
+  margin-bottom: 20px
+
+a img
+  display: block
 
 =grid-container
   padding-left: 20px
@@ -22,12 +35,18 @@ $columnal-class-separator: "_" !default
     margin-right: 0
     padding-left: 0
     padding-right: 0
-    h1 {margin:.5em 0 .5em;}
-    h2 {margin:.5em 0 .535em;}
-    h3 {margin:.5em 0 .57em;}
-    h4 {margin:.5em 0 .615em;}
-    h5 {margin:.5em 0 .67em;}
-    h6 {margin:.5em 0 .8em;}
+    h1
+      margin: .5em 0 .5em
+    h2
+      margin: .5em 0 .535em
+    h3
+      margin: .5em 0 .57em
+    h4
+      margin: .5em 0 .615em
+    h5
+      margin: .5em 0 .67em
+    h6
+      margin: .5em 0 .8em
 
 =grid-row($grid-width: $columnal-grid-width)
   clear: both
@@ -47,14 +66,14 @@ $columnal-class-separator: "_" !default
   margin-right: 3.8%
   position: relative
   @media handheld, only screen and (max-width: 767px)
-    clear: both;
-    float: none;
-    margin-left: 0;
-    margin-right: 0;
-    padding-left: 20px;
-    padding-right: 20px;
-    width: auto;
-    width: -moz-available;
+    clear: both
+    float: none
+    margin-left: 0
+    margin-right: 0
+    padding-left: 20px
+    padding-right: 20px
+    width: auto
+    width: -moz-available
 
 =grid($n)
   +grid-unit-base
