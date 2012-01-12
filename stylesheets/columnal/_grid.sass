@@ -16,6 +16,12 @@ $columnal-class-separator: "_" !default
   padding-right: 20px
   img, object, embed
     max-width: 100%
+  @media handheld, only screen and (max-width: 767px)
+    width: 100%
+    margin-left: 0
+    margin-right: 0
+    padding-left: 0
+    padding-right: 0
 
 =grid-row($grid-width: $columnal-grid-width)
   clear: both
@@ -23,6 +29,12 @@ $columnal-class-separator: "_" !default
   max-width: $grid-width
   margin: 0 auto
   overflow: hidden
+  @media handheld, only screen and (max-width: 767px)
+    width: 100%
+    margin-left: 0
+    margin-right: 0
+    padding-left: 0
+    padding-right: 0
 
 =grid-unit-base
   float: left
@@ -35,6 +47,13 @@ $columnal-class-separator: "_" !default
   @if $n == 12
     clear: both
     float: left
+
+=grid-subcolumn($n1, $n2)
+  @for $n from 1 through ($n1 - 1)
+    .pre#{$columnal-class-separator}#{$n}
+      padding-left: 35.69%
+    .suf#{$columnal-class-separator}#{$n}
+      padding-right: 35.69%
 
 =grid-prefix($n)
   padding-left: ($n*8.65%)
