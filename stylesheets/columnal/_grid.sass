@@ -83,11 +83,11 @@ a img
     float: left
 
 =grid-subcolumn($n1, $n2)
-  @for $n from 1 through ($n1 - 1)
-    .pre#{$columnal-class-separator}#{$n}
-      padding-left: 35.69%
-    .suf#{$columnal-class-separator}#{$n}
-      padding-right: 35.69%
+  $col_width: (4.85% + 8.65% * ($n1 - 1))
+  width: ((4.85% + 8.65% * ($n2 - 1)) / $col_width * 100%)
+  margin-right: (3.8% / $col_width * 100%)
+  float: left
+  position: relative
 
 =grid-prefix($n)
   padding-left: ($n*8.65%)
@@ -123,6 +123,26 @@ a img
     .col#{$columnal-class-separator}#{$n}
       +grid($n)
 
+=grid-subcolumns($cols: $columnal-columns)
+  #{enumerate(".col", 1, $cols, $columnal-class-separator)}
+  @for $n from 1 through $cols
+    .col#{$columnal-class-separator}#{$n}
+      @for $sub from 1 through ($n - 1)
+        .col#{$columnal-class-separator}#{$sub}
+          +grid-subcolumn($n, $sub)
+
+=grid-subcolumn-prefix
+  $col_width: (4.85% + 8.65% * ($n1 - 1))
+  padding-left: ((4.85% + 8.65% * ($n2 - 1)) / $col_width * 100%)
+  float: left
+  position: relative
+
+=grid-subcolumn-suffix
+  $col_width: (4.85% + 8.65% * ($n1 - 1))
+  padding-right: ((4.85% + 8.65% * ($n2 - 1)) / $col_width * 100%)
+  float: left
+  position: relative
+
 =grid-prefixes-sufixes($cols: $columnal-columns)
   @for $n from 1 through $cols - 1
     .pre#{$columnal-class-separator}#{$n}
@@ -132,6 +152,7 @@ a img
 
 =grid-system-complete
   +grids
+  +grid-subcolumns
   +grid-prefixes-sufixes
   +text
   .row
@@ -143,27 +164,9 @@ a img
 
 /*
  *_______________________________
- *Columnal - sub-columns
-
-.col_2
-  .col_1
-    margin-right: 28.62%
-    width: 35.69%
-  .pre_1
-    padding-left: 35.69%
-  .suf_1
-    padding-right: 35.69%
-
-/*
+ *Columnal - sub-columns 64,31
 
 .col_3
-  .col_2
-    margin-right: 17.45%
-  .col_1
-    margin-right: 17.45%
-    width: 21.7%
-  .col_2
-    width: 60.86%
   .pre_1
     padding-left: 21.7%
   .pre_2
@@ -176,15 +179,6 @@ a img
 /*
 
 .col_4
-  .col_3, .col_2
-    margin-right: 12.36%
-  .col_1
-    margin-right: 12.36%
-    width: 15.73%
-  .col_2
-    width: 43.82%
-  .col_3
-    width: 71.91%
   .pre_1
     padding-left: 28.09%
   .pre_2
@@ -201,17 +195,6 @@ a img
 /*
 
 .col_5
-  .col_4, .col_3, .col_2
-    margin-right: 9.7%
-  .col_1
-    margin-right: 9.7%
-    width: 12.24%
-  .col_2
-    width: 34%
-  .col_3
-    width: 56.28%
-  .col_4
-    width: 78%
   .pre_1
     padding-left: 21.94%
   .pre_2
@@ -232,19 +215,6 @@ a img
 /*
 
 .col_6
-  .col_5, .col_4, .col_3, .col_2
-    margin-right: 7.77%
-  .col_1
-    margin-right: 7.77%
-    width: 10.19%
-  .col_2
-    width: 28.13%
-  .col_3
-    width: 46.11%
-  .col_4
-    width: 64.1%
-  .col_5
-    width: 82%
   .pre_1
     padding-left: 89.77%
   .pre_2
@@ -269,21 +239,6 @@ a img
 /*
 
 .col_7
-  .col_6, .col_5, .col_4, .col_3, .col_2
-    margin-right: 6.56%
-  .col_1
-    margin-right: 6.56%
-    width: 8.66%
-  .col_2
-    width: 23.88%
-  .col_3
-    width: 39.11%
-  .col_4
-    width: 54.33%
-  .col_5
-    width: 69.56%
-  .col_6
-    width: 84.78%
   .pre_1
     padding-left: 15.22%
   .pre_2
@@ -312,23 +267,6 @@ a img
 /*
 
 .col_8
-  .col_7, .col_6, .col_5, .col_4, &.col_3, .col_2
-    margin-right: 5.78%
-  .col_1
-    margin-right: 5.78%
-    width: 7.44%
-  .col_2
-    width: 20.66%
-  .col_3
-    width: 33.89%
-  .col_4
-    width: 47.11%
-  .col_5
-    width: 60.33%
-  .col_6
-    width: 73.56%
-  .col_7
-    width: 86.78%
   .pre_1
     padding-left: 13.22%
   .pre_2
@@ -361,24 +299,6 @@ a img
 /*
 
 .col_9
-  .col_1, .col_2, .col_3, .col_4, .col_5, .col_6, .col_7, .col_8
-    margin-right: 5.1%
-  .col_1
-    width: 6.57%
-  .col_2
-    width: 18.25%
-  .col_3
-    width: 29.93%
-  .col_4
-    width: 41.61%
-  .col_5
-    width: 53.25%
-  .col_6
-    width: 64.97%
-  .col_7
-    width: 76.65%
-  .col_8
-    width: 88.33%
   .pre_1
     padding-left: 11.67%
   .pre_2
@@ -415,27 +335,6 @@ a img
 /*
 
 .col_10
-  .col_9, .col_8, .col_7, .col_6, .col_5, .col_4, .col_3, .col_2
-    margin-right: 4.61%
-  .col_1
-    margin-right: 4.61%
-    width: 5.85%
-  .col_2
-    width: 16.31%
-  .col_3
-    width: 26.77%
-  .col_4
-    width: 37.23%
-  .col_5
-    width: 47.69%
-  .col_6
-    width: 58.16%
-  .col_7
-    width: 68.62%
-  .col_8
-    width: 79.08%
-  .col_9
-    width: 89.54%
   .pre_1
     padding-left: 10.46%
   .pre_2
@@ -476,29 +375,6 @@ a img
 /*
 
 .col_11
-  .col_10, .col_9, .col_8, .col_7, .col_6, .col_5, .col_4, .col_3, .col_2
-    margin-right: 4.14%
-  .col_1
-    margin-right: 4.14%
-    width: 5.32%
-  .col_2
-    width: 14.79%
-  .col_3
-    width: 24.26%
-  .col_4
-    width: 33.73%
-  .col_5
-    width: 43.2%
-  .col_6
-    width: 52.66%
-  .col_7
-    width: 62.1%
-  .col_8
-    width: 71.6%
-  .col_9
-    width: 81.07%
-  .col_10
-    width: 90.54%
   .pre_1
     padding-left: 9.46%
   .pre_2
