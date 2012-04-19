@@ -15,22 +15,51 @@ I've tried to use the same mixin names whenever possible to make a migration eas
 Install
 =======
 
-    to be added soon
+First add to your Gemfile:
+
+    gem "compass-columnal-plugin"
+
+Then run:
+
+    bundle install
+
+Finally you add a `config/compass.rb` file to your project containing:
+
+    require 'columnal'
 
 Class-Based Grid System
 =======================
 
 To create a grid system that works like the original Columnal Grid System framework
-use the `+grid-system-complete` mixin to generate the corresponding classes. You 
-can also customize the number of columns as demonstrated:
+use the `+grid-system-complete` mixin to generate the corresponding classes:
 
 Example:
     
-    +grid-system-complete(24)
+    +grid-system-complete
 
 Making Semantic Grids
 =====================
 
-to be added soon
+Let's say we have a 12 columns layout, and we want to use the `<section>` tag as a row in the grid:
 
+    body
+      +grid-container
+      section
+        +grid-row
+        header
+          +grid-column(12)
+        article
+          +grid-column(9)
+        aside
+          +grid-column(3)
+          +last
 
+So we could use the following HTML:
+
+    <body>
+      <section>
+        <header>This header has 12 columns</header>
+        <article>Here we have 9 columns</article>
+        <aside>And here 3</aside>
+      </section>
+    </body>
