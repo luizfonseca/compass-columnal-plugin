@@ -41,7 +41,7 @@ Making Semantic Grids
 =====================
 
 Let's say we have a 12 columns layout, and we want to use the `<section>` tag as a row in the grid:
-
+```css
     body
       +grid-container
       section
@@ -53,6 +53,7 @@ Let's say we have a 12 columns layout, and we want to use the `<section>` tag as
         aside
           +grid-column(3)
           +last
+```
 
 So we could use the following HTML:
 
